@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,27 +34,21 @@
 	                    </li>
 	                    <!-- 직원 네비게이션 바 -->
 	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
-	                        <a class="nav-link" href="/emp/list" >직원관리</a>
-	                    </li>
-	                    <!-- 회원 네이게이션 바 -->
-	                    <li class="nav-item" th:if="${session.auth.grade == 'mem'}">
-	                        <a class="nav-link" href="#">장바구니</a>
+	                        <a class="nav-link" href="/" >기본페이지</a>
 	                    </li>
                     </th:block>
                 </ul>
             </div>
         </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container" id="contents">
+    </nav>    
+	<div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <h1 class="my-4">분류</h1>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">분류 1</a>
-                    <a href="#" class="list-group-item">분류 2</a>
-                    <a href="#" class="list-group-item">분류 3</a>
+                    <a href="form" class="list-group-item">직원 등록</a>
+                    <a href="list" class="list-group-item">직원 목록</a>
+                    <a href="" class="list-group-item">직원 </a>
                 </div>
             </div>
             <!-- /.col-lg-3 -->
@@ -111,13 +105,14 @@
         <!-- /.row -->
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
+        
+	<!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
         </div>
+        <!-- /.container -->
     </footer>
-
+    
 </body>
 </html>

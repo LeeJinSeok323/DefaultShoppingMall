@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="defaultShopping.mapper.MemberMapper">
+<sql id="newMemberNum">select concat('mem' , ifnull(max(substr(member_num, 4)), 100000) +1) from (select member_num from members) as m</sql>
+<insert id="memberInsert" parameterType="memberDTO">
+insert into members(MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_ADDR
+					,MEMBER_ADDR_DETAIL, MEMBER_POST, MEMBER_REGIST, GENDER
+					,MEMBER_PHONE1, MEMBER_PHONE2, MEMBER_EMAIL, MEMBER_BIRTH
+					,MEMBER_POINT, MEMBER_EMAIL_CONF)
+values((<include refid="newMemberNum" />), #{memberName}, #{memberId}, #{memberPw}, #{memberAddr}
+	   ,#{memberAddrDetail}, #{memberPost}, sysdate(), #{gender}
+	   ,#{memberPhone1}, null, #{memberEmail}, #{memberBirth}
+	   ,0, 'N')
+</insert>
+</mapper>
