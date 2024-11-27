@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/static/js/daumAddressScript.js" ></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+            width: 30%;
+        }
+        .button-container {
+		    text-align: right;
+		}
+		
+		.button {
+		    display: inline-block;
+		    padding: 10px 20px;
+		    margin-left: 10px;
+		    color: white;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    border: none;
+		    font-size: 16px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+		
+		.button.cancel {
+		    background-color: #6c757d;
+		}
+		
+		.button.done {
+		    background-color: #007bff;
+		}
+		
+		.button:hover {
+		    opacity: 0.9;
+		}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">Default Shopping Mall</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" th:if="${session.auth == null}">
+                        <a class="nav-link" href="/login/">로그인</a>
+                    </li>
+                    <th:block th:if="${session.auth != null}">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="/login/logout">로그아웃</a>
+	                    </li>
+	                    <!-- 직원 네비게이션 바 -->
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
+	                        <a class="nav-link" href="/" >기본페이지</a>
+	                    </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+    <!--  contents -->
+    <div class="container" style="margin-top:80px; margin-bottom:80px;">
+    	<h1>직원정보 수정</h1>
+		<form action="edit/done" method="post">
+	    <table>
+	    	<input type="hidden" name="empNum" th:value="${empCommand.empNum}" >
+	    	<input type="hidden" name="empPost" id="sample4_postcode">
+	        <tr>
+	            <th>이름</th>
+	            <td><input type="text" name="empName" th:value="${empCommand.empName}"></td>
+	        </tr>
+	        <tr>
+	            <th>주소</th>
+	            <td><input type="text" name="empAddr" onclick="execDaumPostcode();" id="sample4_roadAddress" th:value="${empCommand.empAddr}"> </td>
+	        </tr>
+	        <tr>
+	            <th>상세 주소</th>
+	            <td><input type="text" name="empAddrDetail" th:value="${empCommand.empAddrDetail}"> </td>
+	        </tr>
+	        <tr>
+	            <th>전화번호1</th>
+	            <td><input type="text" name="empPhone" th:value="${empCommand.empPhone}"></td>
+	        </tr>
+	        <tr>
+	            <th>이메일</th>
+	            <td><input type="text" name="empEmail" th:value="${empCommand.empEmail}"></td>
+	        </tr>
+	    </table>
+	    <div class="button-container">
+	    	<button type="button" th:attr="onclick=|javascript:location.href='info?empNum=${empCommand.empNum}'|" class="button cancel">취소</button>
+	        <button type="submit" class="button	done">완료</button>
+	    </div>
+		</form>
+    </div>
+    
+    
+            
+	<!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    
+</body>
+</html>

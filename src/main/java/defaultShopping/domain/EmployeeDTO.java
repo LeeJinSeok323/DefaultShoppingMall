@@ -1,5 +1,7 @@
 package defaultShopping.domain;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -18,7 +20,7 @@ public class EmployeeDTO {
 	String empPhone;
 	String empJumin;
 	String empEmail;
-	String empHireDate;
+	Date empHireDate;
 	String empOriginalImage;
-	String empStoreImage;
+	String empStoreImage;		
 }

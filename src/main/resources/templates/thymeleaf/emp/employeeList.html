@@ -48,35 +48,37 @@
                 <div class="list-group">
                     <a href="/user1/join/begin" class="list-group-item">직원 등록</a>
                     <a href="/user1/list" class="list-group-item">직원 목록</a>
-                    <a href="" class="list-group-item">상품 등록 </a>
-                    <a href="" class="list-group-item">상품 목록 </a>
+                    <a href="/goods/form" class="list-group-item">상품 등록 </a>
+                    <a href="/goods/list" class="list-group-item">상품 목록 </a>
                 </div>
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
                 <div class="carousel slide my-4" data-ride="carousel">
                     <form  action="employeeList" method="get" >
-					<!--  --> 
+					<!-- search --> 
 					<tr><td colspan="5">검색 : 
 							<input type="search" name="searchWord" size="60" th:value="${searchWord}"/>
 							<input type="submit" value="검색" />
 						</td></tr>
 					</form><br>
-					<!-- 직원을 선택하고 선택한 직원들을 삭제할 수 있는 코드를 memberList.html파일에 있는 소스를 복사한 후 필요한 부분을 수정합니다.-->
-					<form action="empsDelete" method="post" id="frm"><!-- 선택한 직원 삭제하겠습니다. -->
+					<!-- table head -->
+					<form action="empsDelete" method="post" id="frm">
 					<table border=1 width=600px>
 					<tr><td>직원번호</td><td>직원아이디</td><td>직원이름</td><td>등록일</td><td>연락처</td>
 						<td><input type="checkbox" id="checkBoxs"/>
 								<input type="submit" value="퇴사" /> 
 						</td></tr>
-					<tr th:each="dto : ${list}"><!-- 직원상세보기를 해보겠습니다. -->
-						<td><a th:href="|employeeDetail?empNum=${dto.empNum}|">[[${dto.empNum}]]</a></td>
-						<td><a th:href="@{employeeDetail(empNum=${dto.empNum})}|">[[${dto.empId}]]</a></td>
+					<!-- table contents -->
+					<tr th:each="dto : ${list}">
+						<td><a th:href="|info?empNum=${dto.empNum}|">[[${dto.empNum}]]</a></td>
+						<td><a th:href="@{info(empNum=${dto.empNum})}|">[[${dto.empId}]]</a></td>
 						<td>[[${dto.empName}]]</td>
 						<td></td>
 						<td>[[${dto.empPhone}]]</td>
 						<td><input type="checkbox" name="nums" th:value="${dto.empNum}" /></td>
 					</tr>
+					<!--  page  -->
 					<tr align="center"><td colspan="6">
 						<th:block th:if="${page <= 1}">
 						[이전]

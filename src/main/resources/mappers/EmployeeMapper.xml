@@ -34,4 +34,23 @@ values(#{empNum}, #{empId}, #{empPw}, #{empName}
 	  </if>
 	  , #{empOriginalImage}, #{empStoreImage})
 </insert>
+<select id="employeeSelectOne" resultType="employeeDTO">
+select <include refid="BaseEmployeeColumns" /> from employees
+where emp_num = #{empNum}
+</select>
+
+<update id="employeeUpdate" parameterType="employeeDTO">
+update employees
+set EMP_NAME = #{empName},
+    EMP_ADDR = #{empAddr},
+    EMP_ADDR_DETAIL = #{empAddrDetail},
+    EMP_POST = #{empPost},
+    EMP_PHONE = #{empPhone},
+    EMP_EMAIL = #{empEmail}
+where EMP_NUM = #{empNum}
+</update>
+
+<delete id="employeeDelete" parameterType="string">
+delete from employees where emp_num = #{empNum}
+</delete>
 </mapper>

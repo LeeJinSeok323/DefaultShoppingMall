@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class EmployeeCommand {
+	String empNum;
 	String empId;
 	String empPw;
 	String empPwCon;
