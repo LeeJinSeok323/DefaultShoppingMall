@@ -34,7 +34,7 @@
 	                    </li>
 	                    <!-- 직원 네비게이션 바 -->
 	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
-	                        <a class="nav-link" href="/emp/list" >직원관리</a>
+	                        <a class="nav-link" href="/user1/list" >관리자페이지</a>
 	                    </li>
 	                    <!-- 회원 네이게이션 바 -->
 	                    <li class="nav-item" th:if="${session.auth.grade == 'mem'}">

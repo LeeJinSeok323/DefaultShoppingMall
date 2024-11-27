@@ -19,5 +19,6 @@ public class EmployeeDTO {
 	String empJumin;
 	String empEmail;
 	String empHireDate;
-	String empImage;
+	String empOriginalImage;
+	String empStoreImage;
 }

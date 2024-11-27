@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import defaultShopping.command.MemberCommand;
-import defaultShopping.service.MemberRegistService;
+import defaultShopping.service.member.MemberRegistService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller

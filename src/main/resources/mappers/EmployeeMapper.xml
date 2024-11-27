@@ -3,13 +3,17 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="defaultShopping.mapper.EmployeeMapper">
+<sql id="BaseEmployeeColumns">
+EMP_NUM, EMP_ID, EMP_PW, EMP_NAME
+,EMP_ADDR, EMP_ADDR_DETAIL, EMP_POST, EMP_PHONE, EMP_JUMIN
+,EMP_EMAIL, EMP_HIRE_DATE, EMP_ORIGINAL_IMAGE, EMP_STORE_IMAGE
+</sql>
 <select id="employeeCount" resultType="integer">
 select count(*) from employees
 </select>
 <select id="employeeSelectList" parameterType="startEndPageDTO" resultType="employeeDTO">
-select * from(	select row_number() over(order by emp_num asc) as rn, EMP_NUM, EMP_ID, EMP_PW, EMP_NAME
-					, EMP_ADDR, EMP_ADDR_DETAIL, EMP_POST, EMP_PHONE, EMP_JUMIN
-	  				,EMP_EMAIL, EMP_HIRE_DATE, EMP_IMAGE
+select * from(	select row_number() over(order by emp_num asc) as rn, 
+				<include refid="BaseEmployeeColumns" />
 				from employees
 				where emp_num like concat('%', #{searchWord}, '%')
        			   or emp_id like concat('%', #{searchWord}, '%')
@@ -17,5 +21,17 @@ select * from(	select row_number() over(order by emp_num asc) as rn, EMP_NUM, EM
 			) as emp
 where rn between #{startRow} and #{endRow};
 </select>
-
+<insert id="employeeInsert" parameterType="employeeDTO">
+insert into employees(<include refid="BaseEmployeeColumns" />)
+values(#{empNum}, #{empId}, #{empPw}, #{empName}
+	  ,#{empAddr}, #{empAddrDetail}, #{empPost}
+	  ,#{empPhone}, #{empJumin}, #{empEmail}
+	  <if test="!#{empHireDate}.isBlank()">
+	  ,#{empHireDate}
+	  </if>
+	  <if test="#{empHireDate}.isBlank()">
+	  ,sysdate()
+	  </if>
+	  , #{empOriginalImage}, #{empStoreImage})
+</insert>
 </mapper>
