@@ -16,4 +16,9 @@
 			#{num}
 		</foreach> 
 </delete>
+<select id="getNumById" parameterType="string" resultType="string">
+select member_num as userNum from members where member_num = #{userId}
+union
+select emp_num from employees where emp_num = #{userId}
+</select>
 </mapper>

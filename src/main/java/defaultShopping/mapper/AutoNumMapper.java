@@ -14,4 +14,6 @@ public interface AutoNumMapper {
 			@Param("nums") String nums[]
 			,@Param("tableName") String tableName
 			,@Param("columnName") String columnName);
+	
+	public String getNumById(String userId);
 }

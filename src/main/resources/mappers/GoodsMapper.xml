@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="defaultShopping.mapper.GoodsMapper">
+<insert id="goodsInsert">
+insert into goods(goods_num, goods_name, goods_price, goods_contents
+				 ,visit_count, goods_main_image, goods_main_store_image
+				 ,goods_detail_image, goods_detail_store_image
+				 ,emp_num, goods_regist, update_emp_num, goods_update_date)
+				 
+values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}
+		,0, #{goodsMainImage}, #{goodsMainStoreImage}
+		,#{goodsDetailImage}, #{goodsDetailStoreImage}
+		,#{empNum}, sysdate(), null, null)
+</insert>
+</mapper> 
