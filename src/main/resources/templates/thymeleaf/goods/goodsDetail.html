@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Shop Homepage - Start Bootstrap Tgoodslate</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this tgoodslate -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+            width: 30%;
+        }
+        .button-container {
+		    text-align: right;
+		}
+		
+		.button {
+		    display: inline-block;
+		    padding: 10px 20px;
+		    margin-left: 10px;
+		    color: white;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    border: none;
+		    font-size: 16px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+		
+		.button.update {
+		    background-color: blue;
+		}
+		
+		.button.delete {
+		    background-color: red;
+		}
+		
+		.button:hover {
+		    opacity: 0.9;
+		}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">Default Shopping Mall</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" th:if="${session.auth == null}">
+                        <a class="nav-link" href="/login/">로그인</a>
+                    </li>
+                    <th:block th:if="${session.auth != null}">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="/login/logout">로그아웃</a>
+	                    </li>
+	                    <!-- 직원 네비게이션 바 -->
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'goods'}">
+	                        <a class="nav-link" href="/" >기본페이지</a>
+	                    </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+    <!--  contents -->
+    <div class="container" style="margin-top:80px; margin-bottom:80px;">
+    	<h1>상품 상세 정보</h1>
+	    <table>
+	        <tr>
+	            <th>상품번호</th>
+	            <td>[[${goodsCommand.goodsNum}]]</td>
+	        </tr>
+	        <tr>
+	            <th>상품이름</th>
+	            <td>[[${goodsCommand.goodsName}]]</td>
+	        </tr>
+	        <tr>
+	            <th>상품가격</th>
+	            <td>[[${goodsCommand.goodsPrice}]]</td>
+	        </tr>
+	        <tr>
+	            <th>상품설명</th>
+	            <td>[[${goodsCommand.goodsContents}]]</td>
+	        </tr>
+	        <tr>
+	            <th>메인 이미지</th>
+	            <td><img th:src="|/static/upload/${goodsCommand.goodsMainStoreImage}|"></td>
+	        </tr>
+	        <tr>
+	            <th>상세 이미지</th>
+	            <td><th:block th:each="imgName : ${goodsDetailStoreImage}">
+	            	<img th:src="|/static/upload/${imgName}|" width="100px" height="100px">
+	            </th:block></td>
+	        </tr>
+	        <tr>
+	            <th>등록직원 | 수정일</th>
+	            <td>[[${goodsCommand.empNum}]] | [[${#dates.format(goodsCommand.goodsRegist, "yyyy-MM-dd")}]]</td>
+	        </tr>
+	        <tr>
+	            <th>마지막수정직원 | 수정일</th>
+	            <td>[[${goodsCommand.updateEmpNum}]] | [[${#dates.format(goodsCommand.goodsUpdateDate, "yyyy-MM-dd")}]]</td>
+	        </tr>
+	    </table>
+			    
+	    <div class="button-container">
+	        <button type="button" th:attr="onclick=|javascript:location.href='edit?goodsNum=${goodsCommand.goodsNum}'|" class="button update">수정</button>
+	        <button type="button" th:attr="onclick=|javascript:location.href='del?goodsNum=${goodsCommand.goodsNum}'|"
+	        					  onclick="return confirm('정말로 삭제하시겠습니까?');" class="button delete">삭제</button>
+	    </div>
+    
+    </div>
+    
+    
+            
+	<!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    
+</body>
+</html>

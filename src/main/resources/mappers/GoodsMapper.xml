@@ -14,4 +14,38 @@ values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}
 		,#{goodsDetailImage}, #{goodsDetailStoreImage}
 		,#{empNum}, sysdate(), null, null)
 </insert>
+<select id="selectGoodsList" resultType="goodsDTO">
+select goods_num, goods_name, goods_price, goods_contents
+      ,visit_count, goods_main_image, goods_main_store_image
+      ,goods_detail_image, goods_detail_store_image
+	  ,emp_num, goods_regist, update_emp_num, goods_update_date
+from goods
+</select>
+<select id="selectGoodsOne" resultType="goodsDTO">
+select goods_num, goods_name, goods_price, goods_contents
+      ,visit_count, goods_main_image, goods_main_store_image
+      ,goods_detail_image, goods_detail_store_image
+	  ,emp_num, goods_regist, update_emp_num, goods_update_date
+from goods
+where goods_num = #{goodsNum}
+</select>
+
+<update id="updateGoods" parameterType="goodsDTO">
+update goods
+set goods_name = #{goodsName},
+	goods_price = #{goodsPrice},
+	goods_contents = #{goodsContents},
+	<if test="goodsMainImage != null">
+	goods_main_image = #{goodsMainImage},
+	goods_main_store_image = #{goodsMainStoreImage},
+	</if>
+	<if test="goodsDetailImage != null">
+	goods_detail_image = #{goodsDetailImage},
+	goods_detail_store_image = #{goodsDetailStoreImage},
+	</if>
+	update_emp_num = #{updateEmpNum},
+	goods_update_date = sysdate()
+where goods_num = #{goodsNum}
+	
+</update>
 </mapper> 

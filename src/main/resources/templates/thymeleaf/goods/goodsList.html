@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Shop Homepage - Start Bootstrap Tgoodslate</title>
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this tgoodslate -->
     <link href="/static/css/shop-homepage.css" rel="stylesheet">
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
@@ -33,7 +33,7 @@
 	                        <a class="nav-link" href="/login/logout">로그아웃</a>
 	                    </li>
 	                    <!-- 직원 네비게이션 바 -->
-	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'goods'}">
 	                        <a class="nav-link" href="/" >기본페이지</a>
 	                    </li>
                     </th:block>
@@ -55,47 +55,50 @@
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
                 <div class="carousel slide my-4" data-ride="carousel">
-                    <form  action="employeeList" method="get" >
-					<!-- search --> 
-					<tr><td colspan="5">검색 : 
-							<input type="search" name="searchWord" size="60" th:value="${searchWord}"/>
-							<input type="submit" value="검색" />
-						</td></tr>
-					</form><br>
+                    <!-- search --> 
+					<tr>
+						<td colspan="5">검색 : 
+							<input type="text" id="searchWord" size="40" th:value="${searchWord}"/>
+							
+						</td>
+					</tr><br>
 					<!-- table head -->
-					<form action="" method="post" id="frm">
+					<form action="" method="post" id="frm"></form>
 					<table border=1 width=600px>
-					<tr><td>직원번호</td><td>직원아이디</td><td>직원이름</td><td>등록일</td><td>연락처</td>
-						<td><input type="checkbox" id="checkBoxs"/>
-								<input type="submit" value="퇴사" /> 
-						</td></tr>
+					<tr><td><input type="checkbox" id="checkBoxs"/>
+								<input type="submit" value="삭제" class="button delete"/> 
+						</td>
+						<td>상품번호</td><td>상품명</td><td>상품설명</td><td>가격</td><td>이미지</td>
+					</tr>	
 					<!-- table contents -->
 					<tr th:each="dto : ${list}">
-						<td><a th:href="|info?empNum=${dto.empNum}|">[[${dto.empNum}]]</a></td>
-						<td><a th:href="@{info(empNum=${dto.empNum})}|">[[${dto.empId}]]</a></td>
-						<td>[[${dto.empName}]]</td>
-						<td></td>
-						<td>[[${dto.empPhone}]]</td>
-						<td><input type="checkbox" name="nums" th:value="${dto.empNum}" /></td>
+						<td><input type="checkbox" name="nums" th:value="${dto.goodsNum}" /></td>					
+						<td><a th:href="|info?goodsNum=${dto.goodsNum}|">[[${dto.goodsNum}]]</a></td>
+						<td><a th:href="@{info(goodsNum=${dto.goodsNum})}|">[[${dto.goodsName}]]</a></td>
+						<td><a th:href="@{info(goodsNum=${dto.goodsNum})}|">[[${dto.goodsContents}]]</a></td>
+						<td>[[${dto.goodsPrice}]]</td>
+						<td><img th:src="|/static/upload/${dto.goodsMainStoreImage}|"></td>
 					</tr>
 					<!--  page  -->
+					<!-- 
 					<tr align="center"><td colspan="6">
 						<th:block th:if="${page <= 1}">
 						[이전]
 						</th:block>
 						<th:block th:if="${page > 1}">
-						<a th:href="@{employeeList(page=${page - 1},searchWord=${searchWord})}">[이전]</a>
+						<a th:href="@{goodsloyeeList(page=${page - 1},searchWord=${searchWord})}">[이전]</a>
 						</th:block>
 						<th:block th:each=" i : ${#numbers.sequence(startPageNum, endPageNum)}">
-						<a th:href="@{employeeList(page=${i},searchWord=${searchWord})}">[[${i}]]</a>
+						<a th:href="@{goodsloyeeList(page=${i},searchWord=${searchWord})}">[[${i}]]</a>
 						</th:block>
 						<th:block th:if="${page >= maxPage}">
 						[다음]
 						</th:block>
 						<th:block th:if="${page < maxPage}">
-						<a th:href="@{employeeList(page=${page + 1},searchWord=${searchWord})}">[다음]</a>
+						<a th:href="@{goodsloyeeList(page=${page + 1},searchWord=${searchWord})}">[다음]</a>
 						</th:block>
 						</td></tr>
+						-->
 					</table>
                 </div>
                 

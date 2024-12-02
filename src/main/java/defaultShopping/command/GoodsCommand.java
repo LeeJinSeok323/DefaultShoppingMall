@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoodsCommand {
+	String goodsNum;
 	String goodsName;
 	int goodsPrice;
 	String goodsContents;

@@ -21,7 +21,7 @@ public class GoodsDTO {
 	String goodsDetailImage;
 	String goodsDetailStoreImage;
 	String empNum;
-	String goodsRegistDate;
+	Date goodsRegist;
 	String updateEmpNum;
 	Date goodsUpdateDate;
 }

@@ -71,7 +71,7 @@ public class GoodsWriteService {
 				storeFileName = storeName + extension;
 				file = new File(fileDir + "/" + storeFileName);
 				try {
-					mf.transferTo(file);
+					mf1.transferTo(file);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
