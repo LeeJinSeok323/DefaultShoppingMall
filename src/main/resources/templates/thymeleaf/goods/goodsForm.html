@@ -18,6 +18,7 @@
 	<script type="text/javascript">
 	$(function(){
 		$("#category").val("");
+		// 태그 이동
 		$(".tag-list").on("click", ".tag", function() {
 	        var $this = $(this);
 	        var $targetList = $this.closest('.tag-list').hasClass('unClickedTags') 
@@ -25,17 +26,62 @@
 	            : $('.unClickedTags');
 	        
 	        $this.detach().appendTo($targetList);
-	        checkTagList();
+	        updateTagList();
 	    });
 		
-		
+		// 태그 추가
+		$("#addTag").keypress(function(e){
+			//검색어 입력 후 엔터키 입력하면 조회버튼 클릭
+			if(e.keyCode && e.keyCode == 13){
+				$("#addBtn").trigger("click");
+				return false;
+			}
+		});
+		var newTag = "";
+		$("#addBtn").click(function(){
+			let addTag = $("#addTag").val();
+			let btn = '<button type="button" class="tag">'+addTag+'</button>';
+			if(isNewTag(addTag)){
+				$(".clickedTag").after(btn);
+				newTag = newTag + " "+ addTag
+			}
+			else{
+				$('.tag-list .tag').filter(function() {
+				    return $(this).text() === addTag;
+				}).detach().appendTo('.clickedTags');
+			}
+			
+		});
+		$("#form").bind('submit', function(event) {
+			$.ajax({
+				url:"",
+				type:"post",
+				data:{"addTag":addTag},
+				success:function(){
+					
+				},
+				error:function(){
+					alert("서버 오류입니다.")
+				}
+			});
+	  	})
 	});
-	function checkTagList(){
+	function updateTagList(){
 		var selectedTagNames = $('.clickedTags .tag').map(function() {
 		    return $(this).text();
 		}).get().join(' ');
-		console.log(selectedTagNames);
 		$("#category").val(selectedTagNames);
+	}
+	
+	function isNewTag(testTag){
+		let hasText = false;
+		$(".tag-list .tag").each(function() {
+		    if ($(this).text() === testTag) {
+		        hasText = true;
+		        return false; 
+		    }
+		});
+		return hasText;
 	}
 	</script>
 </head>
@@ -78,7 +124,7 @@
         </div>
         <br>
 		<!-- 파일을 전송하려면 multipart/form-data로 지정해주어야 합니다. method는 항상 post로 해야함. --> 
-        <form class="form-container" action="./done" method="post" enctype="multipart/form-data">
+        <form class="form-container" action="./done" method="post" id="form" enctype="multipart/form-data">
             <!-- 기본 정보 섹션 -->
             <h2 class="section-title">기본 정보</h2>
             <div class="form-grid">
@@ -115,8 +161,8 @@
 			        </div>
 			    </div>
 			    <div class="form-group" style="margin-top: 20px;">
-			        <label>태그 추가하기</label>
-			        <input type="text">
+			    	<input type="text" id="addTag" style="margin-bottom:20px;">
+			        <button type="button" id="addBtn" class="tag">태그 추가하기</button>
 			    </div>
 			</div>
 			<br>
