@@ -28,6 +28,7 @@ public class GoodsWriteService {
 		dto.setGoodsName(goodsCommand.getGoodsName());
 		dto.setGoodsPrice(goodsCommand.getGoodsPrice());
 		dto.setGoodsContents(goodsCommand.getGoodsContents());
+		dto.setCategory(goodsCommand.getCategory());
 		
 		HttpSession session = request.getSession();
 		AuthInfoDTO auth = (AuthInfoDTO)session.getAttribute("auth");

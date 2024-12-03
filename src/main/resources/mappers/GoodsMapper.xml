@@ -7,25 +7,24 @@
 insert into goods(goods_num, goods_name, goods_price, goods_contents
 				 ,visit_count, goods_main_image, goods_main_store_image
 				 ,goods_detail_image, goods_detail_store_image
-				 ,emp_num, goods_regist, update_emp_num, goods_update_date)
-				 
+				 ,emp_num, goods_regist, update_emp_num, goods_update_date, category)
 values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}
 		,0, #{goodsMainImage}, #{goodsMainStoreImage}
 		,#{goodsDetailImage}, #{goodsDetailStoreImage}
-		,#{empNum}, sysdate(), null, null)
+		,#{empNum}, sysdate(), null, null,#{category})
 </insert>
 <select id="selectGoodsList" resultType="goodsDTO">
 select goods_num, goods_name, goods_price, goods_contents
       ,visit_count, goods_main_image, goods_main_store_image
       ,goods_detail_image, goods_detail_store_image
-	  ,emp_num, goods_regist, update_emp_num, goods_update_date
+	  ,emp_num, goods_regist, update_emp_num, goods_update_date, category
 from goods
 </select>
 <select id="selectGoodsOne" resultType="goodsDTO">
 select goods_num, goods_name, goods_price, goods_contents
       ,visit_count, goods_main_image, goods_main_store_image
       ,goods_detail_image, goods_detail_store_image
-	  ,emp_num, goods_regist, update_emp_num, goods_update_date
+	  ,emp_num, goods_regist, update_emp_num, goods_update_date, category
 from goods
 where goods_num = #{goodsNum}
 </select>

@@ -24,4 +24,5 @@ public class GoodsDTO {
 	Date goodsRegist;
 	String updateEmpNum;
 	Date goodsUpdateDate;
+	String category;
 }

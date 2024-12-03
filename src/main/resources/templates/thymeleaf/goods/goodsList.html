@@ -13,13 +13,15 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+    <link href="/static/css/siteStyle.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Default Shopping Mall</a>
+            <a class="navbar-brand" href="/">
+            	<img src="/static/upload/tmpicon.png" width="30px" height="30px">Steem
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,14 +35,18 @@
 	                        <a class="nav-link" href="/login/logout">로그아웃</a>
 	                    </li>
 	                    <!-- 직원 네비게이션 바 -->
-	                    <li class="nav-item"  th:if="${session.auth.grade == 'goods'}">
-	                        <a class="nav-link" href="/" >기본페이지</a>
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
+	                        <a class="nav-link" href="/user1/list" >관리자페이지</a>
+	                    </li>
+	                    <!-- 회원 네이게이션 바 -->
+	                    <li class="nav-item" th:if="${session.auth.grade == 'mem'}">
+	                        <a class="nav-link" href="#">장바구니</a>
 	                    </li>
                     </th:block>
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>   
 	<div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -110,15 +116,7 @@
     </div>
     <!-- /.container -->
         
-	<!-- Footer -->
-	
-   	<div style="height:200px"></div>
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-        </div>
-        <!-- /.container -->
-    </footer>
+	<script src="/static/js/HeaderFooter.js"></script>
     
 </body>
 </html>

@@ -3,30 +3,113 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>로그인 - Default Shopping Mall</title>
-    <!-- Bootstrap core CSS -->
+    <title>Steam - 로그인</title>
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="/static/css/shop-homepage.css" rel="stylesheet">
-    <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            padding-top: 76px;
+        }
+
+        .navbar {
+            background: linear-gradient(to bottom, #000, #222) !important;
+            border-bottom: 2px solid #00ff9d;
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff9d !important;
+            text-shadow: 0 0 10px #00ff9d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            margin: 0 5px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00ff9d !important;
+            background: rgba(0, 255, 157, 0.1);
+            text-shadow: 0 0 10px #00ff9d;
+        }
+
         .login-form {
             max-width: 400px;
-            margin: 0 auto;
-            padding: 15px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff9d;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00ff9d;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #00ff9d;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: #00ff9d;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+        }
+
+        .form-check-label {
+            color: #fff;
+        }
+
+        a {
+            color: #00ff9d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #00cc7d;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+        }
+
+        .my-4 {
+            color: #00ff9d;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Default Shopping Mall</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="/static/upload/tmpicon.png" width="30px" height="30px">
+            <a class="navbar-brand" href="/">Steem</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -35,9 +118,7 @@
                         <a class="nav-link" href="/">홈</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">로그인
-                            <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="nav-link" href="#">로그인</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">장바구니</a>
@@ -47,7 +128,7 @@
         </div>
     </nav>
 
-    <!-- Page Content -->
+    <!-- Login Form -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -75,11 +156,40 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="game-footer">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p>
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5 class="neon-text">ABOUT STEAM</h5>
+                        <ul class="footer-links">
+                            <li><a href="#">스토어 정보</a></li>
+                            <li><a href="#">커뮤니티</a></li>
+                            <li><a href="#">고객지원</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="neon-text">QUICK LINKS</h5>
+                        <ul class="footer-links">
+                            <li><a href="#">인기 게임</a></li>
+                            <li><a href="#">신규 출시</a></li>
+                            <li><a href="#">특별 할인</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="neon-text">FOLLOW US</h5>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">Discord</a>
+                            <a href="#" class="social-icon">Twitter</a>
+                            <a href="#" class="social-icon">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Steam. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>

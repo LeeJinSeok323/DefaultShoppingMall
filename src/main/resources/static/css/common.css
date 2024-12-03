@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* common.css */
+:root {
+    --neon-primary: #00ff9d;
+    --dark-bg: #0a0a0a;
+    --dark-gradient: linear-gradient(to bottom, #000, #222);
+}
+
+/* 기본 스타일 */
+body {
+    background-color: var(--dark-bg);
+    color: #fff;
+    padding-top: 76px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 네비게이션 스타일 */
+.navbar {
+    background: var(--dark-gradient) !important;
+    border-bottom: 2px solid var(--neon-primary);
+    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+    padding: 15px 0;
+}
+
+/* 버튼과 폼 요소 스타일 */
+.btn, .form-control {
+    transition: all 0.3s ease;
+}
+
+/* 카드 스타일 */
+.card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--neon-primary);
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    transition: transform 0.3s ease;
+}
+
+/* 푸터 스타일 */
+.game-footer {
+    background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, #1b2838 100%);
+    color: #8f98a0;
+    padding: 40px 0 20px;
+    position: relative;
+    margin-top: 50px;
+}

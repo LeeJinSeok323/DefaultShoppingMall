@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Need for Speed Unbound</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/siteStyle.css" rel="stylesheet">
+    <link href="/static/css/game-specific.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <img src="/static/upload/tmpicon.png" width="30px" height="30px">
+            <a class="navbar-brand" href="/">Steem</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" th:if="${session.auth == null}">
+                        <a class="nav-link" href="/login/">로그인</a>
+                    </li>
+                    <th:block th:if="${session.auth != null}">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="/login/logout">로그아웃</a>
+	                    </li>
+	                    <!-- 직원 네비게이션 바 -->
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
+	                        <a class="nav-link" href="/user1/list" >관리자페이지</a>
+	                    </li>
+	                    <!-- 회원 네이게이션 바 -->
+	                    <li class="nav-item" th:if="${session.auth.grade == 'mem'}">
+	                        <a class="nav-link" href="#">장바구니</a>
+	                    </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-4">
+        <div class="row">
+            <!-- 왼쪽 게임 이미지 -->
+            <div class="col-md-6">
+                <img src="game-image.jpg" alt="NFS Unbound Gameplay" class="main-image">
+            </div>
+            
+            <!-- 오른쪽 게임 정보 -->
+            <div class="col-md-6">
+                <div class="game-info h-100">
+                    <img src="game-title.jpg" alt="NFS Unbound Logo" class="title-image">
+                    <h1 class="game-title mb-4">Need for Speed™ Unbound</h1>
+                    <p class="lead mb-4">
+                    	[[${goodsCommand.goodsContents}]]  
+                    </p>
+                    <div class="tags mb-4" th:each="tag : ${category}">
+                        <span class="tag">[[${tag}]]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 하단 게임 정보 -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="game-info">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>개발사</h5>
+                            <p>Criterion Games</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>배급사</h5>
+                            <p>Electronic Arts</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>출시일</h5>
+                            <p>2022년 12월 2일</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/HeaderFooter.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

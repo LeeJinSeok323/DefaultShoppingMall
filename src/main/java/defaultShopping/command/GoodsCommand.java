@@ -14,6 +14,8 @@ public class GoodsCommand {
 	String goodsName;
 	int goodsPrice;
 	String goodsContents;
+	String goodsCommand;
 	MultipartFile goodsMainImage;
 	MultipartFile[] goodsDetailImage;
+	String category;
 }

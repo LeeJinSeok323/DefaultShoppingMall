@@ -4,49 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 상세 정보</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-            width: 30%;
-        }
-        .button-container {
-            text-align: right;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-left: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .button.delete {
-            background-color: #dc3545;
-        }
-    </style>
+    <link href="/static/css/siteStyle.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            	<img src="/static/upload/tmpicon.png" width="30px" height="30px">Steem
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" th:if="${session.auth == null}">
+                        <a class="nav-link" href="/login/">로그인</a>
+                    </li>
+                    <th:block th:if="${session.auth != null}">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="/login/logout">로그아웃</a>
+	                    </li>
+	                    <!-- 직원 네비게이션 바 -->
+	                    <li class="nav-item"  th:if="${session.auth.grade == 'emp'}">
+	                        <a class="nav-link" href="/user1/list" >관리자페이지</a>
+	                    </li>
+	                    <!-- 회원 네이게이션 바 -->
+	                    <li class="nav-item" th:if="${session.auth.grade == 'mem'}">
+	                        <a class="nav-link" href="#">장바구니</a>
+	                    </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <h1>회원 상세 정보</h1>
     <table>
         <tr>
@@ -119,5 +109,6 @@
         <a th:href="|../memberUpdate?memberNum=${memberCommand.memberNum}|" class="button">수정</a>
         <a th:href="|../membersDelete?memberNum=${memberCommand.memberNum}|" class="button delete" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
     </div>
+    <link href="/static/css/siteStyle.css" rel="stylesheet">
 </body>
 </html>

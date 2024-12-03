@@ -19,9 +19,11 @@ public class GoodsDetailService {
 		
 		String[] goodsDetailStoreImage = dto.getGoodsDetailStoreImage().split("/");
 		String[] goodsDetailImage = dto.getGoodsDetailImage().split("/");
+		String[] category = dto.getCategory().split(" ");
 		
 		model.addAttribute("goodsDetailImage", goodsDetailImage);
 		model.addAttribute("goodsDetailStoreImage", goodsDetailStoreImage);
+		model.addAttribute("category", category);
 		model.addAttribute("goodsCommand",dto);
 	}
 }
